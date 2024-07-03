@@ -39,23 +39,27 @@
 						{{ csrf_field() }}
 							
 							<div class="mb-4">
-								<label class="mb-1 text-dark">Mobile</label>
-								<input type="text" class="form-control form-control" id="validationCustom01" name="mobile" required value="">
-								<div class="invalid-feedback">
-									Please enter a mobile.
-								</div>
+								<label class="mb-1 text-dark">Mobile <span class="text text-danger">*</span></label>
+								<input type="text" class="form-control" id="validationCustom01" name="mobile" value="{{ old('mobile') }}" required>
+								@error('mobile')
+									<div class="text text-danger">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="mb-4 position-relative">
-								<label class="mb-1 text-dark">Password</label>
-								<input type="password" id="dlab-password" id="validationCustom03" name="password" class="form-control form-control" required value="">
-								<div class="invalid-feedback">
-								Please enter a password.
-								</div>
+								<label class="mb-1 text-dark">Password <span class="text text-danger">*</span></label>
+								<input type="password" id="dlab-password" id="validationCustom03" name="password" class="form-control" value="{{ old('password') }}" required>
+								@error('password')
+									<div class="text text-danger">
+										{{ $message }}
+									</div>
+								@enderror
 							</div>
 							<div class="form-row d-flex justify-content-between mt-4 mb-2">
 								<div class="mb-4">
 									<div class="form-check custom-checkbox mb-3">
-										<input type="checkbox" class="form-check-input" id="customCheckBox1" required="">
+										<input type="checkbox" class="form-check-input" id="customCheckBox1">
 										<label class="form-check-label mt-1" for="customCheckBox1">Remember my preference</label>
 									</div>
 								</div>
