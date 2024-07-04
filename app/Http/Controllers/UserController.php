@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use App\ModelS\User;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -13,48 +15,60 @@ class UserController extends Controller
     {
         return view('login');
     }
+
     public function signupshow()
     {
         return view('register');
     }
+
     public function showdashboard()
     {
         return view('home');
     }
    
-    
-    public function login(Request $post)
+    public function login(Request $request)
     {
-        dd($post->all());
-        $user = User::where('mobile', $post->mobile)->first();
-        if(!$user){
-            return response()->json(['status' => "Your aren't registred with us." ], 400);
-        }
-        
-        
+        $validatedData = $request->validate([
+            'mobile' => 'required|numeric|digits:10',
+            'password' => 'required|string'
+        ]);
 
-        if(!\Auth::validate(['mobile' => $post->mobile, 'password' => $post->password])){
-            return response()->json(['status'=> $post->password], 400);
+        $user = User::where('mobile', $validatedData['mobile'])->first();
+
+        if($user && Hash::check($validatedData['password'], $user->password)){
+            Auth::login($user);
+            return redirect()->route('dashboard')->with('success','Logged In successfully.');
+        }
+        else{
+            return back()->withErrors(['mobile'=>'Invalid Credentials.!'])->withInput();
         }
 
-        if (!\Auth::validate(['mobile' => $post->mobile, 'password' => $post->password,'status'=> "active"])) {
-            return response()->json(['status' => 'Your account currently de-activated, please contact administrator'], 400);
-        }
+        // if(!$user){
+        //     return response()->json(['status' => "Your aren't registred with us." ], 400);
+        // }
+
+        // if(!\Auth::validate(['mobile' => $post->mobile, 'password' => $post->password])){
+        //     return response()->json(['status'=> $post->password], 400);
+        // }
+
+        // if (!\Auth::validate(['mobile' => $post->mobile, 'password' => $post->password,'status'=> "active"])) {
+        //     return response()->json(['status' => 'Your account currently de-activated, please contact administrator'], 400);
+        // }
 
         
-        if (\Auth::attempt(['mobile' =>$post->mobile, 'password' =>$post->password, 'status'=> "active"])) {
-            return response()->json(['status' => 'Login'], 200);
-        }else{
-            return response()->json(['status' => 'Something went wrong, please contact administrator'], 400);
-        }
-        
+        // if (\Auth::attempt(['mobile' =>$post->mobile, 'password' =>$post->password, 'status'=> "active"])) {
+        //     return response()->json(['status' => 'Login'], 200);
+        // }else{
+        //     return response()->json(['status' => 'Something went wrong, please contact administrator'], 400);
+        // }
     }
 
     public function logout(Request $request)
     {
-        \Auth::guard()->logout();
+        Auth::logout();
         $request->session()->invalidate();
-        return redirect('/');
+        $request->session()->regenerateToken();
+        return redirect()->route('mylogin');
     }
 
     public function passwordReset(Request $post)
@@ -111,19 +125,13 @@ class UserController extends Controller
         }  
     }
     
-     public function registration(Request $post)
+    public function registration(Request $post)
     {
-        //dd($post->all());
-        
-
-       $this->validate($post, [
+        $this->validate($post, [
             'name'       => 'required',
             'mobile'     => 'required|numeric|digits:10|unique:users,mobile',
             'email'      => 'required|email|unique:users,email',
         ]);
-
-        
-
         
         $post['password']   = bcrypt($post->mobile);
         $post['passwordold']   = ($post->mobile);
@@ -133,20 +141,19 @@ class UserController extends Controller
         $post['parent_id']     = 1;
         $post['kyc']        = "verified";
 
-        
-
         $response = User::updateOrCreate(['id'=> $post->id], $post->all());
         if($response){
             $content="Dear ".$post->mobile.", Your profile is now created on our system. Username : ".$post->mobile.", password : ".$post->mobile.", Pyrapay";
             \Myhelper::whatsapp($post->mobile, $content);
            
-
             return response()->json(['status' => "TXN", 'message' => "Success"], 200);
-        }else{
+        }
+        else{
             return response()->json(['status' => 'ERR', 'message' => "Something went wrong, please try again"], 400);
         }
     }
-     public function txnotp(Request $post)
+
+    public function txnotp(Request $post)
     {
        $post['user_id']=\Auth::id();
        $user = \App\User::where('id', $post->user_id)->first();
@@ -285,6 +292,7 @@ class UserController extends Controller
         //     return response()->json(['status' => "Please enter valid otp"], 400);
         // }  
     }
+
     public function setpinwithoutotp(Request $request)
     {
         echo $request->mobile;

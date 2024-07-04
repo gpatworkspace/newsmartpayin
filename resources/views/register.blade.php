@@ -41,29 +41,29 @@
 							<h3 class="title">Sign up your account</h3>
 							<p>Sign in to your account to start using Dompact</p>
 						</div>
-						<form action="https://dompet.dexignlab.com/flask/demo/index.html">
+						<form action="#">
+							@csrf
 							<div class="mb-4">
 								<label class="mb-1 text-dark">Username</label>
-								<input type="text" class="form-control form-control" value="username">
+								<input type="text" class="form-control" name="username">
 							</div>
 							<div class="mb-4">
 								<label class="mb-1 text-dark">Email</label>
-								<input type="email" class="form-control form-control" value="hello@example.com">
+								<input type="email" class="form-control" name="username">
 							</div>
 							<div class="mb-4 position-relative">
 								<label class="mb-1 text-dark">Password</label>
-								<input type="password"id="dlab-password" class="form-control form-control" value="Password">
+								<input type="password" id="dlab-password" class="form-control" name="username">
+
 								<span class="show-pass eye">
-								
 									<i class="fa fa-eye-slash"></i>
 									<i class="fa fa-eye"></i>
-								
 								</span>
 							</div>
 							<div class="form-row d-flex justify-content-between mt-4 mb-2">
 								<div class="mb-4">
 									<div class="form-check custom-checkbox mb-3">
-										<input type="checkbox" class="form-check-input" id="customCheckBox1" required="">
+										<input type="checkbox" class="form-check-input" id="customCheckBox1">
 										<label class="form-check-label mt-1" for="customCheckBox1">Remember my preference</label>
 									</div>
 								</div>
