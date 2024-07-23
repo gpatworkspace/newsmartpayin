@@ -26,11 +26,12 @@
 	<title>Dompet - Payment Flask Admin Dashboard Bootstrap Template</title>
 	
 	
-	
-	<link href="vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
-	<link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
+	 <!-- Datatable -->
+	 <link href="{{asset('')}}vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="{{asset('')}}vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
+	<link rel="stylesheet" href="{{asset('')}}vendor/nouislider/nouislider.min.css">
 	<!-- Style css -->
-     <link href="css/style.css" rel="stylesheet">
+     <link href="{{asset('')}}css/style.css" rel="stylesheet">
 	
 </head>
 <body>
@@ -621,25 +622,36 @@
     <!--**********************************
         Scripts
     ***********************************-->
-    <!-- Required vendors -->
-    <script src="vendor/global/global.min.js"></script>
-	<script src="vendor/chart-js/chart.bundle.min.js"></script>
-	<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
-	
+     <!-- Required vendors -->
+	 <script src="{{asset('')}}vendor/global/global.min.js"></script>
+	<script src="{{asset('')}}vendor/chart-js/chart.bundle.min.js"></script>
+
 	<!-- Apex Chart -->
-	<script src="vendor/apexchart/apexchart.js"></script>
-	<script src="vendor/nouislider/nouislider.min.js"></script>
-	<script src="vendor/wnumb/wNumb.js"></script>
+	<script src="{{asset('')}}vendor/apexchart/apexchart.js"></script>
+
+	<!-- Datatable -->
+    <script src="{{asset('')}}vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="{{asset('')}}js/plugins-init/datatables.init.js"></script>
+	
+	<script src="{{asset('')}}vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
+	
+	<script src="{{asset('')}}vendor/nouislider/nouislider.min.js"></script>
+	<script src="{{asset('')}}vendor/wnumb/wNumb.js"></script>
 	
 	<!-- Dashboard 1 -->
-	<script src="js/dashboard/dashboard-1.js"></script>
+	<script src="{{asset('')}}js/dashboard/dashboard-1.js"></script>
 
-      <script src="js/custom.min.js"></script>
-	<script src="js/dlabnav-init.js"></script>
-	<script src="js/demo.js"></script>
-   <script src="js/styleSwitcher.js"></script>
+    <script src="{{asset('')}}js/custom.min.js"></script>
+	<script src="{{asset('')}}js/dlabnav-init.js"></script>
+	<script src="{{asset('')}}js/demo.js"></script>
+    <script src="{{asset('')}}js/styleSwitcher.js"></script>
+
+	
+    <script src="{{asset('')}}assets/js/jquery.form.min.js"></script>
+    <script src="{{asset('')}}assets/js/jquery.validate.min.js"></script>
+    <script src="{{asset('')}}assets/js/toasting.js"></script>
 	
 </body>
 
-<!-- Mirrored from dompet.dexignlab.com/flask/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jun 2024 04:37:44 GMT -->
+
 </html>

@@ -28,34 +28,27 @@
 							<i class="flaticon-025-dashboard"></i>
 							<span class="nav-text">Dashboard</span>
 						</a>
-                        <ul aria-expanded="false">
-							<li><a href="index.html">Dashboard Light</a></li>
-							<li><a href="index-2.html">Dashboard Dark</a></li>
-							<li><a href="index-3.html">Dashboard 3<span class="badge badge-xs badge-danger ms-3">New</span></a></li>
-							<li><a href="index-4.html">Dashboard 4<span class="badge badge-xs badge-danger ms-3">New</span></a></li>
-							<li><a href="index-5.html">Dashboard 5<span class="badge badge-xs badge-danger ms-3">New</span></a></li>
-							<li><a href="index-6.html">Dashboard 6<span class="badge badge-xs badge-danger ms-3">New</span></a></li>
-							<li><a href="index-7.html">Dashboard 7<span class="badge badge-xs badge-danger ms-3">New</span></a></li>
-							<li><a href="index-8.html">Dashboard 8<span class="badge badge-xs badge-danger ms-3">New</span></a></li>
-							<li><a href="my-wallet.html">My Wallet</a></li>
-							<li><a href="page-invoices.html">Invoices</a></li>
-							<li><a href="cards-center.html">Cards Center</a></li>
-							<li><a href="page-transaction.html">Transaction</a></li>
-							<li><a href="transaction-details.html">Transaction Details</a></li>	
-						</ul>
-
+                       
                     </li>
 					<li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 							<i class="fa-solid fa-gear fw-bold"></i>
-							<span class="nav-text">CMS</span>
+							<span class="nav-text">Member Managemnet</span>
 						</a>
                         <ul aria-expanded="false">
-							<li><a href="content.html">Content</a></li>
-							<li><a href="menu.html">Menu</a></li>	
-							<li><a href="email-template.html">Email Template</a></li>		
-							<li><a href="blog.html">Blog</a></li>	
+							<li><a href="{{route('member', ['type' => 'admin'])}}">Admin</a></li>
+                            <li><a href="{{route('member', ['type' => 'apiuser'])}}">API User</a></li>
+                           
+								
 						</ul>
 
+                    </li>
+                    <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+							<i class="fa-solid fa-gear fw-bold"></i>
+							<span class="nav-text">Resource Managemnet</span>
+						</a>
+                        <ul aria-expanded="false">
+                        <li><a href="{{route('resource', ['type' => 'scheme'])}}">Scheme Manager</a></li>		
+						</ul>
                     </li>
                     <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
 						<i class="flaticon-050-info"></i>

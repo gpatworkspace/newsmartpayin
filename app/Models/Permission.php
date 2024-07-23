@@ -5,16 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Permission extends Model
 {
     use HasFactory;
-    protected $table = 'roles';
-
-    protected $fillable = [
-        'slug',
-        'name',
-    ];
-
+    protected $fillable = ['name', 'slug', 'type'];
     public function getUpdatedAtAttribute($value)
     {
         return date('d M y - h:i A', strtotime($value));

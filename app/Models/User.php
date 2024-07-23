@@ -56,7 +56,33 @@ class User extends Authenticatable
         'ifsc',
         'passwordold',
     ];
+    public $with = ['role'];
+    protected $appends = ['parents'];
 
+    public function role(){
+        return $this->belongsTo('App\Models\Role');
+    }
+    
+    
+
+    public function getParentsAttribute() {
+        $user = User::where('id', $this->parent_id)->first(['id', 'name', 'mobile', 'role_id']);
+        if($user){
+            return $user->name." (".$user->id.")<br>".$user->mobile."<br>".$user->role->name;
+        }else{
+            return "Not Found";
+        }
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return date('d M y - h:i A', strtotime($value));
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date('d M y - h:i A', strtotime($value));
+    }
     protected $casts = [
         'mainwallet' => 'double',
         'lockedamount' => 'double',

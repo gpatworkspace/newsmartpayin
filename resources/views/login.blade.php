@@ -14,11 +14,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/png" href="images/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="{{asset('')}}images/favicon.png">
 
 	<!-- Page Title Here -->
 	<title>SuvidhaBnk - </title>
-	<link href="css/style.css" rel="stylesheet">
+	<link href="{{asset('')}}assets/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+	<link href="{{asset('')}}assets/css/toasting.css" rel="stylesheet" />
+	<link href="{{asset('')}}css/style.css" rel="stylesheet">
 
 	
 	
@@ -35,26 +37,18 @@
 							<h3 class="title">Sign In</h3>
 							<p>Sign in to your account</p>
 						</div>
-						<form action="{{route('authCheck')}}" method="POST" class="login-form" >
+						<form action="{{route('authCheck')}}" method="POST" class="loginForm" >
 						{{ csrf_field() }}
 							
 							<div class="mb-4">
 								<label class="mb-1 text-dark">Mobile <span class="text text-danger">*</span></label>
-								<input type="text" class="form-control" id="validationCustom01" name="mobile" value="{{ old('mobile') }}" required>
-								@error('mobile')
-									<div class="text text-danger">
-										{{ $message }}
-									</div>
-								@enderror
+								<input type="text" class="form-control" id="validationCustom01" name="mobile" value="" required>
+								
 							</div>
 							<div class="mb-4 position-relative">
 								<label class="mb-1 text-dark">Password <span class="text text-danger">*</span></label>
-								<input type="password" id="dlab-password" id="validationCustom03" name="password" class="form-control" value="{{ old('password') }}" required>
-								@error('password')
-									<div class="text text-danger">
-										{{ $message }}
-									</div>
-								@enderror
+								<input type="password" id="dlab-password" id="validationCustom03" name="password" class="form-control" value="" required>
+								
 							</div>
 							<div class="form-row d-flex justify-content-between mt-4 mb-2">
 								<div class="mb-4">
@@ -107,15 +101,102 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-	 
-<script src="vendor/global/global.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>	 
+<script src="{{asset('')}}vendor/global/global.min.js"></script>
+<script src="{{asset('')}}js/custom.min.js"></script>
+<script src="{{asset('')}}js/dlabnav-init.js"></script>
+<script src="{{asset('')}}js/demo.js"></script>
+<script src="{{asset('')}}js/styleSwitcher.js"></script>
+    <!-- Sweet Alerts js -->
+<script src="{{asset('')}}assets/sweetalert2/sweetalert2.min.js"></script>
+<script src="{{asset('')}}assets/js/sweetalerts.init.js"></script>
 
-<script src="vendor/jquery-nice-select/js/jquery.nice-select.min.js"></script>
 
-<script src="js/custom.min.js"></script>
-<script src="js/dlabnav-init.js"></script>
-<script src="js/demo.js"></script>
- 
+<script src="{{asset('')}}assets/js/jquery.form.min.js"></script>
+<script src="{{asset('')}}assets/js/jquery.validate.min.js"></script>
+<script src="{{asset('')}}assets/js/toasting.js"></script>
+<script>
+$( document ).ready(function() {
+    $( ".loginForm" ).validate({
+                rules: {
+                    mobile: {
+                        required: true,
+                        minlength: 10,
+                        number : true,
+                        maxlength: 11
+                    },
+                    password: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    mobile: {
+                        required: "Please enter mobile number",
+                        number: "Mobile number should be numeric",
+                        minlength: "Your mobile number must be 10 digit",
+                        maxlength: "Your mobile number must be 10 digit"
+                    },
+                    password: {
+                        required: "Please enter password",
+                    }
+                },
+                errorElement: "p",
+                errorPlacement: function ( error, element ) {
+                    if ( element.prop("tagName").toLowerCase() === "select" ) {
+                        error.insertAfter( element.closest( ".form-group" ).find(".select2") );
+                    } else {
+                        error.insertAfter( element );
+                        $
+                    }
+                },
+                submitHandler: function () {
+                    var form = $('.loginForm');
+                    form.ajaxSubmit({
+                        dataType:'json',
+						beforeSubmit: function() {
+                             Swal.fire({
+                                title: 'Wait!',
+                                text: 'Please wait, we are sending your details',
+                                onOpen: () => {
+                                    Swal.showLoading()
+                                },
+                                allowOutsideClick: () => !Swal.isLoading()
+                            });
+                    },
+                success:function(data){
+                    if(data.status == "Login"){
+								Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Successfully logged in",
+                                showConfirmButton: !1,
+                                timer: 3000,
+                                showCloseButton: !0
+                            });
+							window.location.reload();      
+                    }
+                },
+                error: function(errors) {
+                Swal.close();
+                    if(errors.status == '400'){
+						$('b.errorText').text(errors.responseJSON.status);
+						setTimeout(function(){
+							$('b.errorText').text('');
+						}, 5000);
+                    }else{
+						$('b.errorText').text('Something went wrong, try again later.');
+						setTimeout(function(){
+							$('b.errorText').text('');
+						}, 5000);
+                    }
+                }
+            });
+        }
+    });           
+});
+
+       
+    </script>
 </body>
 
 

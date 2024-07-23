@@ -26,41 +26,34 @@ class UserController extends Controller
         return view('home');
     }
    
-    public function login(Request $request)
+    public function login(Request $post)
     {
-        $validatedData = $request->validate([
+        $validatedData = $post->validate([
             'mobile' => 'required|numeric|digits:10',
             'password' => 'required|string'
         ]);
 
         $user = User::where('mobile', $validatedData['mobile'])->first();
 
-        if($user && Hash::check($validatedData['password'], $user->password)){
-            Auth::login($user);
-            return redirect()->route('dashboard')->with('success','Logged In successfully.');
-        }
-        else{
-            return back()->withErrors(['mobile'=>'Invalid Credentials.!'])->withInput();
+
+        if(!$user){
+            return response()->json(['status' => "Your aren't registred with us." ], 400);
         }
 
-        // if(!$user){
-        //     return response()->json(['status' => "Your aren't registred with us." ], 400);
-        // }
+        if(!\Auth::validate(['mobile' => $post->mobile, 'password' => $post->password])){
+            return response()->json(['status'=> $post->password], 400);
+        }
 
-        // if(!\Auth::validate(['mobile' => $post->mobile, 'password' => $post->password])){
-        //     return response()->json(['status'=> $post->password], 400);
-        // }
-
-        // if (!\Auth::validate(['mobile' => $post->mobile, 'password' => $post->password,'status'=> "active"])) {
-        //     return response()->json(['status' => 'Your account currently de-activated, please contact administrator'], 400);
-        // }
+        if (!\Auth::validate(['mobile' => $post->mobile, 'password' => $post->password,'status'=> "active"])) {
+            return response()->json(['status' => 'Your account currently de-activated, please contact administrator'], 400);
+        }
 
         
-        // if (\Auth::attempt(['mobile' =>$post->mobile, 'password' =>$post->password, 'status'=> "active"])) {
-        //     return response()->json(['status' => 'Login'], 200);
-        // }else{
-        //     return response()->json(['status' => 'Something went wrong, please contact administrator'], 400);
-        // }
+        if (\Auth::attempt(['mobile' =>$post->mobile, 'password' =>$post->password, 'status'=> "active"])) {
+            return response()->json(['status' => 'Login'], 200);
+        }else{
+            return response()->json(['status' => 'Something went wrong, please contact administrator'], 400);
+        }
     }
 
     public function logout(Request $request)
