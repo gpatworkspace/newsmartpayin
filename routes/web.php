@@ -33,5 +33,4 @@ Route::group(['prefix' => 'resources', 'middleware' => ['auth']], function() {
     Route::post('update', [ResourceController::class, 'update'])->name('resourceupdate');
     Route::post('get/{type}/commission', [ResourceController::class, 'getCommission']);
     Route::post('get/{type}/packagecommission', [ResourceController::class, 'getPackageCommission']);
-   
 });
