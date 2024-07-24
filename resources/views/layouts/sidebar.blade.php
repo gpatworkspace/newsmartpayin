@@ -44,7 +44,7 @@
                 </a>
                 <ul aria-expanded="false">
                 <li><a href="{{route('resource', ['type' => 'scheme'])}}">Scheme Manager</a></li>		
-                <li><a href="{{route('resource', ['type' => 'company'])}}">Company Manager</a></li>		
+                <li><a href="{{route('resource', ['type' => 'companyprofile'])}}">Company Profile</a></li>		
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\FundController;
 
 Route::get('/', [UserController::class, 'index'])->middleware('guest')->name('login');
 
@@ -33,4 +34,10 @@ Route::group(['prefix' => 'resources', 'middleware' => ['auth']], function() {
     Route::post('update', [ResourceController::class, 'update'])->name('resourceupdate');
     Route::post('get/{type}/commission', [ResourceController::class, 'getCommission']);
     Route::post('get/{type}/packagecommission', [ResourceController::class, 'getPackageCommission']);
+});
+
+Route::group(['prefix'=> 'fund', 'middleware' => ['auth']], function() {
+    Route::get('{type}/{action?}', [FundController::class, 'index'])->name('fund');
+    Route::post('transaction', [FundController::class, 'transaction'])->name('fundtransaction');
+    
 });
