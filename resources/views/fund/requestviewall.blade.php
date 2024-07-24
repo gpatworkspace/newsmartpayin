@@ -16,7 +16,9 @@
                         <div class="card">
                             <div class="card-header">
                                 <h4 class="card-title">{{ucwords($type)}} List</h4>
-                                <a class="btn btn-rounded btn-primary" href="{{route('member', ['type' => $type, 'action' => 'create'])}}" ><span class="btn-icon-start text-primary"><i class="fa fa-plus color-info"></i></span>Add</a>
+                                <button type="button" class="btn btn-rounded btn-primary"><span
+                                        class="btn-icon-start text-primary"><a href="{{route('member', ['type' => $type, 'action' => 'create'])}}" ><i class="fa fa-plus color-info"></i>
+</a></span>Add</button>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">

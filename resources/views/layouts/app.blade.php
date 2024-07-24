@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Mirrored from dompet.dexignlab.com/flask/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 29 Jun 2024 04:37:00 GMT -->
 <head>
 
   <!-- All Meta -->

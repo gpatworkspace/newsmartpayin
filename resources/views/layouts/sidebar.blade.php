@@ -3,7 +3,7 @@
         <ul class="metismenu" id="menu">
             <li class="dropdown header-profile">
                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                        <img src="images/profile/pic1.jpg" width="20" alt="">
+                        <img src="{{asset('')}}images/profile/pic1.jpg" width="20" alt="">
                     <div class="header-info ms-3">
                         <span class="font-w600 ">Hi,<b>William</b></span>
                         <small class="text-end font-w400">william@gmail.com</small>
@@ -52,8 +52,8 @@
                     <span class="nav-text">Fund</span>
                 </a>
                 <ul aria-expanded="false">
-                <li><a href="javascript:void()">Request</a></li>		
-                <li><a href="javascript:void()">Fund Report</a></li>		
+                <li><a href="{{route('fund', ['type' => 'request'])}}">Request</a></li>		
+                <li><a href="{{route('fund', ['type' => 'requestviewall'])}}">Fund Report</a></li>		
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">

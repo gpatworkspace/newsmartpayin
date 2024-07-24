@@ -10,74 +10,18 @@ use Carbon\Carbon;
 
 class FundController extends Controller
 {
-    public $fundapi,$cashfree, $admin;
+    #public $fundapi,$cashfree, $admin;
 
-    public function __construct()
-    {
-        $this->fundapi = Api::where('code', 'fund')->first();
+    #public function __construct()
+    #{
+    #    $this->fundapi = Api::where('code', 'fund')->first();
          
 
-    }
+    #}
 
     public function index($type, $action="none")
     {
-        $data = [];
-        switch ($type) {
-            case 'tr':
-                $permission = ['fund_transfer', 'fund_return'];
-                break;
-            
-            case 'request':
-                $permission = 'fund_request';
-                break;
-                
-            case 'wallet':
-                $permission = 'fund_request';
-                break;    
-            
-            case 'requestview':
-                $permission = 'setup_bank';
-                break;
-            
-            case 'statement':
-            case 'requestviewall':
-                $permission = 'fund_report';
-                break;
-
-            
-            default:
-                abort(404);
-                break;
-        }
-
-        if (!\Myhelper::can($permission)) {
-            abort(403);
-        }
-
-        if ($this->cashfree->status == "0") {
-            abort(503);
-        }
-
-        switch ($type) {
-            case 'request':
-                $data['banks'] = Fundbank::where('user_id', \Auth::user()->parent_id)->where('status', '1')->get();
-                if(!\Myhelper::can('setup_bank', \Auth::user()->parent_id)){
-                    $admin = User::whereHas('role', function ($q){
-                        $q->where('slug', 'whitelable');
-                    })->where('company_id', \Auth::user()->company_id)->first(['id']);
-
-                    if($admin && \Myhelper::can('setup_bank', $admin->id)){
-                        $data['banks'] = Fundbank::where('user_id', $admin->id)->where('status', '1')->get();
-                    }else{
-                        $admin = User::whereHas('role', function ($q){
-                            $q->where('slug', 'admin');
-                        })->first(['id']);
-                        $data['banks'] = Fundbank::where('user_id', $admin->id)->where('status', '1')->get();
-                    }
-                }
-                $data['paymodes'] = Paymode::where('status', '1')->get();
-                break;
-        }
+       $data['type'] = $type;
 
         return view('fund.'.$type)->with($data);
     }
