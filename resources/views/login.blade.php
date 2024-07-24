@@ -166,12 +166,10 @@ $( document ).ready(function() {
                 success:function(data){
                     if(data.status == "Login"){
 								Swal.fire({
-                                position: "top-end",
                                 icon: "success",
                                 title: "Successfully logged in",
                                 showConfirmButton: !1,
-                                timer: 3000,
-                                showCloseButton: !0
+                                timer: 3000
                             });
 							window.location.reload();      
                     }

@@ -5,8 +5,8 @@
 				
 				<div class="row page-titles">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Table</a></li>
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Datatable</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Resources</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">Schemes</a></li>
 					</ol>
                 </div>
                 <!-- row -->
@@ -15,8 +15,8 @@
                 <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Patient</h4>
-                                <button type="button" class="btn btn-rounded btn-primary"  data-bs-toggle="modal" data-bs-target="#basicModal"><span
+                                <h4 class="card-title">Scheme List</h4>
+                                <button type="button" class="btn btn-rounded btn-primary"  data-bs-toggle="modal" data-bs-target="#setupModal"><span
                                         class="btn-icon-start text-primary"><i class="fa fa-plus color-info"></i></a></span>Add</button>
                             </div>
                             <div class="card-body">
@@ -91,20 +91,31 @@
         </div>
 
 <!-- Modal -->
-<div class="modal fade" id="basicModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal">
-                </button>
-            </div>
-            <div class="modal-body">Modal body text goes here.</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+<div class="modal fade" id="setupModal" tabindex="-1" role="dialog" aria-labelledby="setupModalTitle" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="setupModalTitle"><span class="msg">Add</span> Scheme</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal">
+			</div>            
+            <form id="setupManager" action="{{route('resourceupdate')}}" method="post">
+                <div class="modal-body">
+                    <div class="row">
+                        <input type="hidden" name="id">
+                        <input type="hidden" name="actiontype" value="scheme">
+                        {{ csrf_field() }}
+                        <div class="form-group col-md-12">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter Scheme Name" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer custom">
+                    <button type="button" class="btn btn-danger light" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success" data-loading-text="<i class='fa fa-spin fa-spinner'></i> Submitting">Submit</button>
+				</div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog  modal-lg -->
+</div><!-- /.modal -->
 @endsection

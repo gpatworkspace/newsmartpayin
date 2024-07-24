@@ -4,8 +4,8 @@
             <div class="container-fluid">
 				<div class="row page-titles">
 					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Validation</a></li>
+						<li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+						<li class="breadcrumb-item active"><a href="javascript:void(0)">Create New</a></li>
 					</ol>
                 </div>
                 <!-- row -->
@@ -13,170 +13,80 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Form Validation</h4>
+                                <h4 class="card-title">Create User</h4>
                             </div>
                             <div class="card-body">
                                 <div class="form-validation">
                                     <form class="needs-validation" novalidate >
                                         <div class="row">
-                                            <div class="col-xl-6">
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom01">Username
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-														<input type="text" class="form-control" id="validationCustom01"  placeholder="Enter a username.." required>
-														<div class="invalid-feedback">
-															Please enter a username.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom02">Email <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="validationCustom02"  placeholder="Your valid email.." required>
-														<div class="invalid-feedback">
-															Please enter a Email.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom03">Password
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="password" class="form-control" id="validationCustom03" placeholder="Choose a safe one.." required>
-														<div class="invalid-feedback">
-															Please enter a password.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom04">Suggestions <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <textarea class="form-control" id="validationCustom04"  rows="5" placeholder="What would you like to see?" required></textarea>
-														<div class="invalid-feedback">
-															Please enter a Suggestions.
-														</div>
-                                                    </div>
-                                                </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">First Name</label><span class="text-danger">*</span>
+                                                <input type="text" class="form-control" placeholder="First Name" required>
                                             </div>
-                                            <div class="col-xl-6">
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom05">Best Skill
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <select class="default-select wide form-control" id="validationCustom05">
-                                                            <option  data-display="Select">Please select</option>
-                                                            <option value="html">HTML</option>
-                                                            <option value="css">CSS</option>
-                                                            <option value="javascript">JavaScript</option>
-                                                            <option value="angular">Angular</option>
-                                                            <option value="angular">React</option>
-                                                            <option value="vuejs">Vue.js</option>
-                                                            <option value="ruby">Ruby</option>
-                                                            <option value="php">PHP</option>
-                                                            <option value="asp">ASP.NET</option>
-                                                            <option value="python">Python</option>
-                                                            <option value="mysql">MySQL</option>
-                                                        </select>
-														<div class="invalid-feedback">
-															Please select a one.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom06">Currency
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="validationCustom06" placeholder="$21.60" required>
-														<div class="invalid-feedback">
-															Please enter a Currency.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom07">Website
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="validationCustom07"  placeholder="http://example.com" required>
-														<div class="invalid-feedback">
-															Please enter a url.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom08">Phone (US)
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="validationCustom08" placeholder="212-999-0000" required>
-														<div class="invalid-feedback">
-															Please enter a phone no.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom09">Digits <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="validationCustom09"  placeholder="5" required>
-														<div class="invalid-feedback">
-															Please enter a digits.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom10">Number <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="validationCustom10" placeholder="5.0" required>
-														<div class="invalid-feedback">
-															Please enter a num.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label" for="validationCustom11">Range [1, 5]
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" class="form-control" id="validationCustom11" placeholder="4" required>
-														<div class="invalid-feedback">
-															Please select a range.
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label class="col-lg-4 col-form-label"><a
-                                                            href="javascript:void()">Terms &amp; Conditions</a> <span
-                                                            class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="col-lg-8">
-                                                        <div class="form-check">
-														  <input class="form-check-input" type="checkbox" value="" id="validationCustom12" required>
-														  <label class="form-check-label mt-1" for="validationCustom12">
-															Agree to terms and conditions
-														  </label>
-														</div>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <div class="col-lg-8 ms-auto">
-                                                        <button type="submit" class="btn btn-primary">Submit</button>
-                                                    </div>
-                                                </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Last Name</label><span class="text-danger">*</span>
+                                                <input type="text" class="form-control" placeholder="Last Name" required>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Email</label><span class="text-danger">*</span>
+                                                <input type="email" class="form-control" placeholder="Email" required>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Phone Number</label><span class="text-danger">*</span>
+                                                <input type="number" class="form-control" placeholder="Phone Number" required>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Address</label><span class="text-danger">*</span>
+                                                <input type="text" class="form-control" placeholder="Address" required>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">State</label><span class="text-danger">*</span>
+                                                <select id="inputState" class="default-select form-control wide" required>
+                                                    <option selected>Choose State</option>
+                                                    <option>Option 1</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                </select>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">City</label><span class="text-danger">*</span>
+                                                <input type="text" class="form-control" placeholder="City" required>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Zip</label><span class="text-danger">*</span>
+                                                <input type="text" class="form-control" placeholder="Zip" required>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Shop Name</label>
+                                                <input type="text" class="form-control" placeholder="Shop Name">
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">PAN Number</label><span class="text-danger">*</span>
+                                                <input type="text" class="form-control" placeholder="PAN Number" required>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Aadhar Number</label><span class="text-danger">*</span>
+                                                <input type="text" class="form-control" placeholder="Aadhar Number" required>
+                                            </div>
+                                            <div class="mb-3 col-md-6">
+                                                <label class="form-label">Scheme</label><span class="text-danger">*</span>
+                                                <select id="inputState" class="default-select form-control wide" required>
+                                                    <option selected>Choose Scheme</option>
+                                                    <option>Option 1</option>
+                                                    <option>Option 2</option>
+                                                    <option>Option 3</option>
+                                                </select>
                                             </div>
                                         </div>
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox">
+                                                <label class="form-check-label">
+                                                    I accept terms & conditions
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Sign in</button>
                                     </form>
                                 </div>
                             </div>
